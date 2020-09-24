@@ -4,7 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 import static java.time.LocalDateTime.now;
@@ -14,10 +16,12 @@ import static java.time.LocalDateTime.now;
 public class Semaforo extends EntidadeBase<Integer> {
 
     @Column
+    @NotNull(message = "O código do semáforo é obrigatório.")
     private String codigo;
 
     @Column
     @Embedded
+    @NotNull(message = "O endereço do semáforo é obrigatório.")
     private Endereco endereco;
 
     @Column
@@ -26,10 +30,10 @@ public class Semaforo extends EntidadeBase<Integer> {
     public Semaforo() {
     }
 
-    public Semaforo(String codigo, Endereco endereco, LocalDateTime dataCadastro) {
+    public Semaforo(String codigo, Endereco endereco) {
         this.codigo = codigo;
         this.endereco = endereco;
-        this.dataCadastro = dataCadastro;
+        this.dataCadastro = now();
     }
 
     public String getCodigo() {
@@ -57,8 +61,25 @@ public class Semaforo extends EntidadeBase<Integer> {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Semaforo semaforo = (Semaforo) o;
+        return Objects.equals(codigo, semaforo.codigo) &&
+                Objects.equals(endereco, semaforo.endereco) &&
+                Objects.equals(dataCadastro, semaforo.dataCadastro);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), codigo, endereco, dataCadastro);
+    }
+
+    @Override
     public String toString() {
         return new StringJoiner(", ", Semaforo.class.getSimpleName() + "[", "]")
+                .add("id=" + getId())
                 .add("codigo='" + codigo + "'")
                 .add("endereco=" + endereco)
                 .add("dataCadastro=" + dataCadastro)

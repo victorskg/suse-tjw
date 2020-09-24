@@ -2,6 +2,7 @@ package ifce.tjw.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -9,15 +10,19 @@ import java.util.StringJoiner;
 public class Endereco {
 
     @Column
+    @NotNull(message = "O estado é obrigatório.")
     private String estado;
 
     @Column
+    @NotNull(message = "A cidade é obrigatória.")
     private String cidade;
 
     @Column
+    @NotNull(message = "O bairro é obrigatório.")
     private String bairro;
 
     @Column
+    @NotNull(message = "O logadouro é obrigatório.")
     private String logradouro;
 
     public Endereco() {
