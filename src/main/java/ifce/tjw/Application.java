@@ -4,6 +4,7 @@ import ifce.tjw.model.Endereco;
 import ifce.tjw.model.Semaforo;
 import ifce.tjw.repository.SemaforoRepository;
 
+// Classe de teste. Remover ao concluir a aplicação.
 public class Application {
 
     public static void main(String[] args) {
