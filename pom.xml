@@ -13,6 +13,7 @@
 
     <properties>
         <!--Web-->
+        <jstl.version>1.2</jstl.version>
         <junit.version>4.11</junit.version>
         <javaee.version>8.0</javaee.version>
         <servlet.version>3.1.0</servlet.version>
@@ -26,6 +27,9 @@
         <hibernate.version>5.4.20.Final</hibernate.version>
         <hibernate-core.version>5.4.20.Final</hibernate-core.version>
         <hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
+
+        <!--Other-->
+        <jsp-time.version>1.1.4</jsp-time.version>
     </properties>
 
     <dependencies>
@@ -46,6 +50,11 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>${servlet.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl.version}</version>
         </dependency>
 
         <!-- Hibernate -->
@@ -72,6 +81,13 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.2.9</version>
+        </dependency>
+
+        <!--Others-->
+        <dependency>
+            <groupId>net.sargue</groupId>
+            <artifactId>java-time-jsptags</artifactId>
+            <version>${jsp-time.version}</version>
         </dependency>
     </dependencies>
 
