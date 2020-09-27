@@ -78,7 +78,15 @@
             text-align: center;
         }
 
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
         .state-container {
+            margin: 8px;
             width: 150px;
             display: flex;
             flex-direction: column;
@@ -144,22 +152,26 @@
     <section>
         <span>Cadastre um semáforo e associe a um plano semafórico para visualizar seu funcionamento.</span>
     </section>
-    <div class="state-container">
-        <div class="state-header">S01</div>
-        <div class="state-box">
-            <div class="state-time-container">
-                <div class="red state"></div>
-                <span>30s</span>
+    <div class="container">
+        <c:forEach items="${semaforos}" var="semaforo">
+            <div class="state-container">
+                <div class="state-header">${semaforo.codigo}</div>
+                <div class="state-box">
+                    <div class="state-time-container">
+                        <div class="red state"></div>
+                        <span>${semaforo.planoSemaforico.tempoVermelho}s</span>
+                    </div>
+                    <div class="state-time-container">
+                        <div class="yellow state"></div>
+                        <span>${semaforo.planoSemaforico.tempoAmarelo}s</span>
+                    </div>
+                    <div class="state-time-container">
+                        <div class="green state"></div>
+                        <span>${semaforo.planoSemaforico.tempoVerde}s</span>
+                    </div>
+                </div>
             </div>
-            <div class="state-time-container">
-                <div class="yellow state"></div>
-                <span>30s</span>
-            </div>
-            <div class="state-time-container">
-                <div class="green state"></div>
-                <span>30s</span>
-            </div>
-        </div>
+        </c:forEach>
     </div>
 </main>
 </body>
