@@ -2,8 +2,11 @@ package ifce.tjw.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+
+import static java.time.LocalDateTime.now;
 
 @Entity
 @Table(name = "plano_semaforico")
@@ -23,6 +26,9 @@ public class PlanoSemaforico extends EntidadeBase<Integer> {
 
     @OneToMany(mappedBy = "plano_semaforico")
     private List<Semaforo> semaforos;
+
+    @Column
+    private LocalDateTime dataCadastro = now();
 
     public PlanoSemaforico(){
     }
@@ -65,6 +71,14 @@ public class PlanoSemaforico extends EntidadeBase<Integer> {
         this.semaforos = semaforos;
     }
 
+    public LocalDateTime getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDateTime dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,12 +88,13 @@ public class PlanoSemaforico extends EntidadeBase<Integer> {
         return Objects.equals(tempoVerde, that.tempoVerde) &&
                 Objects.equals(tempoVermelho, that.tempoVermelho) &&
                 Objects.equals(tempoAmarelo, that.tempoAmarelo) &&
-                Objects.equals(semaforos, that.semaforos);
+                Objects.equals(semaforos, that.semaforos) &&
+                Objects.equals(dataCadastro, that.dataCadastro);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), tempoVerde, tempoVermelho, tempoAmarelo, semaforos);
+        return Objects.hash(super.hashCode(), tempoVerde, tempoVermelho, tempoAmarelo, semaforos, dataCadastro);
     }
 
     @Override
@@ -89,6 +104,7 @@ public class PlanoSemaforico extends EntidadeBase<Integer> {
                 ", tempoVermelho=" + tempoVermelho +
                 ", tempoAmarelo=" + tempoAmarelo +
                 ", semaforos=" + semaforos +
+                ", dataCadastro=" + dataCadastro +
                 '}';
     }
 }
