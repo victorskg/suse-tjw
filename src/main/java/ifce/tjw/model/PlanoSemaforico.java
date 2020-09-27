@@ -1,6 +1,9 @@
 package ifce.tjw.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,19 +27,38 @@ public class PlanoSemaforico extends EntidadeBase<Integer> {
     @NotNull(message = "O tempo de estado amarelo é obrigatório.")
     private Integer tempoAmarelo;
 
-    @OneToMany(mappedBy = "plano_semaforico")
+    @OneToMany(mappedBy = "planoSemaforico")
     private List<Semaforo> semaforos;
 
     @Column
     private LocalDateTime dataCadastro = now();
 
-    public PlanoSemaforico(){
+    public PlanoSemaforico() {
     }
 
-    public PlanoSemaforico(Integer tempoVerde, Integer tempoVermelho, Integer tempoAmarelo, List<Semaforo> semaforos){
+    public PlanoSemaforico(Integer tempoVerde, Integer tempoVermelho, Integer tempoAmarelo) {
         this.tempoVerde = tempoVerde;
         this.tempoVermelho = tempoVermelho;
         this.tempoAmarelo = tempoAmarelo;
+        this.dataCadastro = now();
+    }
+
+    public PlanoSemaforico(Integer tempoVerde, Integer tempoVermelho, Integer tempoAmarelo, List<Semaforo> semaforos) {
+        this.tempoVerde = tempoVerde;
+        this.tempoVermelho = tempoVermelho;
+        this.tempoAmarelo = tempoAmarelo;
+        this.semaforos = semaforos;
+        this.dataCadastro = now();
+    }
+
+    public void adicionarSemaforo(Semaforo semaforo) {
+        semaforos.add(semaforo);
+        semaforo.setPlanoSemaforico(this);
+    }
+
+    public void removerSemaforo(Semaforo semaforo) {
+        semaforos.remove(semaforo);
+        semaforo.setPlanoSemaforico(null);
     }
 
     public Integer getTempoVerde() {
@@ -107,4 +129,5 @@ public class PlanoSemaforico extends EntidadeBase<Integer> {
                 ", dataCadastro=" + dataCadastro +
                 '}';
     }
+
 }

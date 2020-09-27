@@ -129,7 +129,7 @@
     <div class="header-right">
         <a href="#home">Dashboard</a>
         <a href="semaforos" class="active">Semáforos</a>
-        <a href="#about">Planos Semafóricos</a>
+        <a href="planos-semaforicos">Planos Semafóricos</a>
     </div>
 </header>
 <main>

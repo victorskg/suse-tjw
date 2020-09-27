@@ -157,9 +157,9 @@
                     <td><c:out value="${plano.tempoVerde}"/>s</td>
                     <td><c:out value="${plano.tempoVermelho}"/>s</td>
                     <td><c:out value="${plano.tempoAmarelo}"/>s</td>
-                    <td><c:out value="${plano.dataCadastro}" /></td>
-                    <td><a href="planos?acao=excluir&id=<c:out value="${plano.id}"/>">Excluir</a></td>
-                    <td><a href="planos?acao=atualizar&id=<c:out value="${plano.id}"/>">Atualizar</a></td>
+                    <td><c:out value="${plano.dataCadastro}"/></td>
+                    <td><a href="planos-semaforicos?acao=excluir&id=<c:out value="${plano.id}"/>">Excluir</a></td>
+                    <td><a href="planos-semaforicos?acao=atualizar&id=<c:out value="${plano.id}"/>">Atualizar</a></td>
                 </tr>
             </c:forEach>
             </tbody>

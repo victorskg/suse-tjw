@@ -1,9 +1,6 @@
 package ifce.tjw.model;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -27,6 +24,9 @@ public class Semaforo extends EntidadeBase<Integer> {
     @Column
     private LocalDateTime dataCadastro = now();
 
+    @ManyToOne
+    private PlanoSemaforico planoSemaforico;
+
     public Semaforo() {
     }
 
@@ -34,6 +34,13 @@ public class Semaforo extends EntidadeBase<Integer> {
         this.codigo = codigo;
         this.endereco = endereco;
         this.dataCadastro = now();
+    }
+
+    public Semaforo(String codigo, Endereco endereco, PlanoSemaforico planoSemaforico) {
+        this.codigo = codigo;
+        this.endereco = endereco;
+        this.dataCadastro = now();
+        this.planoSemaforico = planoSemaforico;
     }
 
     public String getCodigo() {
@@ -58,6 +65,14 @@ public class Semaforo extends EntidadeBase<Integer> {
 
     public void setDataCadastro(LocalDateTime dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    public PlanoSemaforico getPlanoSemaforico() {
+        return planoSemaforico;
+    }
+
+    public void setPlanoSemaforico(PlanoSemaforico planoSemaforico) {
+        this.planoSemaforico = planoSemaforico;
     }
 
     @Override
