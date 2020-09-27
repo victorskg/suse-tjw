@@ -95,6 +95,7 @@
             border: 1px solid #eee;
             padding: 12px 24px;
             border-collapse: collapse;
+            text-align: center;
         }
 
         th {
