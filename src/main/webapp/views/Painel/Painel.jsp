@@ -1,3 +1,5 @@
+<%@ page import="java.util.Timer" %>
+<%@ page import="java.util.TimerTask" %>
 <%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -61,12 +63,69 @@
             padding: 12px;
         }
 
-        main section .section-header {
+        main section {
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: center;
             margin-bottom: 12px;
+            color: #fff;
+            margin-top: 12px;
+            background-color: #02cccc;
+        }
+
+        main section span {
+            text-align: center;
+        }
+
+        .state-container {
+            width: 150px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .state-header {
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+            padding: 8px;
+            background-color: #02cccc;
+        }
+
+        .state-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            background-color: #9a9a9a;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .state {
+            width: 36px;
+            border-radius: 50%;
+            height: 36px;
+            margin: 8px;
+            box-shadow: 1px 1px 1px black;
+        }
+
+        .state-time-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
@@ -85,6 +144,23 @@
     <section>
         <span>Cadastre um semáforo e associe a um plano semafórico para visualizar seu funcionamento.</span>
     </section>
+    <div class="state-container">
+        <div class="state-header">S01</div>
+        <div class="state-box">
+            <div class="state-time-container">
+                <div class="red state"></div>
+                <span>30s</span>
+            </div>
+            <div class="state-time-container">
+                <div class="yellow state"></div>
+                <span>30s</span>
+            </div>
+            <div class="state-time-container">
+                <div class="green state"></div>
+                <span>30s</span>
+            </div>
+        </div>
+    </div>
 </main>
 </body>
 </html>
