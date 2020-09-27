@@ -108,7 +108,7 @@
             transform: scale(0.95);
         }
 
-        input[type=text] {
+        input[type=text], input[type=password] {
             background-color: #f6f6f6;
             border: none;
             color: #0d0d0d;
@@ -129,12 +129,12 @@
             border-radius: 5px 5px 5px 5px;
         }
 
-        input[type=text]:focus {
+        input[type=text]:focus, input[type=password]:focus {
             background-color: #fff;
             border-bottom: 2px solid #5fbae9;
         }
 
-        input[type=text]::placeholder {
+        input[type=text]::placeholder, input[type=password]::placeholder {
             color: #cccccc;
         }
 
@@ -292,7 +292,7 @@
         <form action="login" method="post">
             <input type="text" id="usuario" class="fadeIn second" name="usuario" placeholder="usuario"
                    autocomplete="off"/>
-            <input type="text" id="senha" class="fadeIn third" name="senha" placeholder="senha" autocomplete="off"/>
+            <input type="password" id="senha" class="fadeIn third" name="senha" placeholder="senha" autocomplete="off"/>
             <c:if test="${error}"> <span class="fadeIn third errorMsg">Usuário ou senha inválidos</span> </c:if>
             <input type="submit" class="fadeIn fourth" value="Entrar"/>
         </form>

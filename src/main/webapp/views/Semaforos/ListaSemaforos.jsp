@@ -137,7 +137,7 @@
     <section>
         <div class="section-header">
             <button class="add-button">
-                <a href="semaforos">Novo Semáforo</a>
+                <a href="semaforos?acao=cadastrar">Novo Semáforo</a>
             </button>
         </div>
         <table>
@@ -157,7 +157,7 @@
                     <td><c:out value="${semaforo.id}"/></td>
                     <td><c:out value="${semaforo.codigo}"/></td>
                     <td><c:out value="${semaforo.endereco.cidade}"/> - <c:out value="${semaforo.endereco.estado}"/></td>
-                    <td><c:out value="${semaforo.endereco.cidade}"/> - <c:out value="${semaforo.endereco.bairro}"/></td>
+                    <td><c:out value="${semaforo.endereco.logradouro}"/>, <c:out value="${semaforo.endereco.bairro}"/></td>
                     <td><c:out value="${semaforo.dataCadastro}" /></td>
                     <td><a href="semaforos?acao=excluir&id=<c:out value="${semaforo.id}"/>">Excluir</a></td>
                     <td><a href="semaforos?acao=atualizar&id=<c:out value="${semaforo.id}"/>">Atualizar</a></td>

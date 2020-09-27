@@ -30,6 +30,7 @@
 
         <!--Other-->
         <jsp-time.version>1.1.4</jsp-time.version>
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
     </properties>
 
     <dependencies>
@@ -88,6 +89,11 @@
             <groupId>net.sargue</groupId>
             <artifactId>java-time-jsptags</artifactId>
             <version>${jsp-time.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${commons-beanutils.version}</version>
         </dependency>
     </dependencies>
 
