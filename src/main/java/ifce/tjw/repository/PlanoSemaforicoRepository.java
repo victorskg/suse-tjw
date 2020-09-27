@@ -18,6 +18,10 @@ public class PlanoSemaforicoRepository implements CRUDRepository<PlanoSemaforico
     @Override
     @Transactional
     public PlanoSemaforico create(PlanoSemaforico entity) {
+        entity.getSemaforos().forEach(s -> {
+            s.setPlanoSemaforico(entity);
+        });
+
         var entityManager = EntityManagerProducer.getEntityManager();
         var entityTransaction = entityManager.getTransaction();
 

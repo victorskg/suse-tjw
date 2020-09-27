@@ -137,7 +137,7 @@
     <section>
         <div class="section-header">
             <button class="add-button">
-                <a href="planos-semaforicos">Novo Plano Semafórico</a>
+                <a href="planos-semaforicos?acao=cadastrar">Novo Plano Semafórico</a>
             </button>
         </div>
         <table>
