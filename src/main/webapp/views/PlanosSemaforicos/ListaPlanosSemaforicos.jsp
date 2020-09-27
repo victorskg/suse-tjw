@@ -127,7 +127,7 @@
         <span>SUSE</span>
     </div>
     <div class="header-right">
-        <a href="#home">Dashboard</a>
+        <a href="painel">Painel</a>
         <a href="semaforos">Semáforos</a>
         <a href="planos-semaforicos" class="active">Planos Semafóricos</a>
     </div>

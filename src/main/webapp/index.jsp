@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <style>
@@ -267,6 +269,11 @@
         * {
             box-sizing: border-box;
         }
+
+        .errorMsg {
+            color: red;
+            font-size: 15px;
+        }
     </style>
 </head>
 <body>
@@ -282,10 +289,12 @@
         </div>
 
         <!-- Login Form -->
-        <form>
-            <input type="text" id="login" class="fadeIn second" name="login" placeholder="usuario">
-            <input type="text" id="password" class="fadeIn third" name="login" placeholder="senha">
-            <input type="submit" class="fadeIn fourth" value="Entrar">
+        <form action="login" method="post">
+            <input type="text" id="usuario" class="fadeIn second" name="usuario" placeholder="usuario"
+                   autocomplete="off"/>
+            <input type="text" id="senha" class="fadeIn third" name="senha" placeholder="senha" autocomplete="off"/>
+            <c:if test="${error}"> <span class="fadeIn third errorMsg">Usuário ou senha inválidos</span> </c:if>
+            <input type="submit" class="fadeIn fourth" value="Entrar"/>
         </form>
 
         <!-- Remind Passowrd -->
