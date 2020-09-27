@@ -25,7 +25,7 @@ public class PlanoSemaforico extends EntidadeBase<Integer> {
     @NotNull(message = "O tempo de estado amarelo é obrigatório.")
     private Integer tempoAmarelo;
 
-    @OneToMany(mappedBy = "planoSemaforico", fetch= FetchType.EAGER)
+    @OneToMany(mappedBy = "planoSemaforico")
     private List<Semaforo> semaforos = new ArrayList<>();
 
     @Column
