@@ -25,6 +25,7 @@ public class Semaforo extends EntidadeBase<Integer> {
     private LocalDateTime dataCadastro = now();
 
     @ManyToOne
+    @JoinColumn(name = "plano_semaforico_id", foreignKey = @ForeignKey(name = "fk_plano_semaforico"))
     private PlanoSemaforico planoSemaforico;
 
     public Semaforo() {

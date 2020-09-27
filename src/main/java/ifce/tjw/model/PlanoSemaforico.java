@@ -1,11 +1,9 @@
 package ifce.tjw.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,8 +25,8 @@ public class PlanoSemaforico extends EntidadeBase<Integer> {
     @NotNull(message = "O tempo de estado amarelo é obrigatório.")
     private Integer tempoAmarelo;
 
-    @OneToMany(mappedBy = "planoSemaforico")
-    private List<Semaforo> semaforos;
+    @OneToMany(mappedBy = "planoSemaforico", fetch= FetchType.EAGER)
+    private List<Semaforo> semaforos = new ArrayList<>();
 
     @Column
     private LocalDateTime dataCadastro = now();
