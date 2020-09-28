@@ -108,13 +108,12 @@ public class PlanoSemaforico extends EntidadeBase<Integer> {
         return Objects.equals(tempoVerde, that.tempoVerde) &&
                 Objects.equals(tempoVermelho, that.tempoVermelho) &&
                 Objects.equals(tempoAmarelo, that.tempoAmarelo) &&
-                Objects.equals(semaforos, that.semaforos) &&
                 Objects.equals(dataCadastro, that.dataCadastro);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), tempoVerde, tempoVermelho, tempoAmarelo, semaforos, dataCadastro);
+        return Objects.hash(super.hashCode(), tempoVerde, tempoVermelho, tempoAmarelo, dataCadastro);
     }
 
     @Override
@@ -123,7 +122,6 @@ public class PlanoSemaforico extends EntidadeBase<Integer> {
                 "tempoVerde=" + tempoVerde +
                 ", tempoVermelho=" + tempoVermelho +
                 ", tempoAmarelo=" + tempoAmarelo +
-                ", semaforos=" + semaforos +
                 ", dataCadastro=" + dataCadastro +
                 '}';
     }

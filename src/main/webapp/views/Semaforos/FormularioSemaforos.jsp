@@ -124,6 +124,37 @@
             color: #cccccc;
         }
 
+        select {
+            background-color: #f6f6f6;
+            color: #0d0d0d;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 5px;
+            width: 85%;
+            border: 2px solid #f6f6f6;
+            -webkit-transition: all 0.5s ease-in-out;
+            -moz-transition: all 0.5s ease-in-out;
+            -ms-transition: all 0.5s ease-in-out;
+            -o-transition: all 0.5s ease-in-out;
+            transition: all 0.5s ease-in-out;
+            -webkit-border-radius: 5px 5px 5px 5px;
+            border-radius: 5px 5px 5px 5px;
+        }
+
+        select:focus {
+            background-color: #fff;
+            border-bottom: 2px solid #5fbae9;
+            text-align: center;
+        }
+
+        select::placeholder {
+            color: #cccccc;
+            text-align: center;
+        }
+
         .fadeInDown {
             -webkit-animation-name: fadeInDown;
             animation-name: fadeInDown;
@@ -251,6 +282,13 @@
                    name="bairro" value="${semaforo.endereco.bairro}" placeholder="Bairro" autocomplete="off"/>
             <input type="text" id="logradouro" class="fadeIn second"
                    name="logradouro" value="${semaforo.endereco.logradouro}" placeholder="Logradouro" autocomplete="off"/>
+            <c:if test="${planos.size() > 0}">
+                <select name="idPlanoSemaforico" class="fadeIn second" value="${semaforo.idPlanoSemaforico}" >
+                    <c:forEach items="${planos}" var="plano">
+                        <option value="${plano.id}" selected="${plano.id == semaforo.idPlanoSemaforico}">${plano.tempoVermelho}s - ${plano.tempoAmarelo}s - ${plano.tempoVerde}</option>
+                    </c:forEach>
+                </select>
+            </c:if>
             <input type="submit" class="fadeIn fourth" value="${not empty semaforo ? "Atualizar" : "Cadastrar"}"/>
         </form>
         <a href="semaforos" class="fadeIn fourth">Voltar</a>

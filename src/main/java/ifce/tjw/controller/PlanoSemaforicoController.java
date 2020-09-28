@@ -20,13 +20,11 @@ public class PlanoSemaforicoController extends HttpServlet {
 
     private final String forwardRoot;
     private final PlanoSemaforicoRepository repository;
-    private final SemaforoRepository semaforoRepository;
 
     public PlanoSemaforicoController() {
         super();
         this.forwardRoot = "views/PlanosSemaforicos/";
         this.repository = new PlanoSemaforicoRepository();
-        this.semaforoRepository = new SemaforoRepository();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,7 +49,7 @@ public class PlanoSemaforicoController extends HttpServlet {
 
         populateBean(plano, request);
 
-        if (plano.getId().equals(0) || isNull(plano.getId())) {
+        if (isNull(plano.getId()) || plano.getId().equals(0)) {
             plano.setId(null);
             repository.create(plano);
         } else {
@@ -64,7 +62,6 @@ public class PlanoSemaforicoController extends HttpServlet {
     private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         var forward = forwardRoot + "FormularioPlanosSemaforicos.jsp";
         request.removeAttribute("acao");
-        request.setAttribute("semaforos", semaforoRepository.readAll());
         var viewDispatcher = request.getRequestDispatcher(forward);
 
         viewDispatcher.forward(request, response);
@@ -75,7 +72,6 @@ public class PlanoSemaforicoController extends HttpServlet {
         request.removeAttribute("acao");
 
         request.setAttribute("planos", repository.readAll());
-        request.setAttribute("semaforos", semaforoRepository.readAll());
         var viewDispatcher = request.getRequestDispatcher(forward);
 
         viewDispatcher.forward(request, response);
@@ -84,7 +80,6 @@ public class PlanoSemaforicoController extends HttpServlet {
     private void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         var forward = forwardRoot + "FormularioPlanosSemaforicos.jsp";
         request.removeAttribute("acao");
-        request.setAttribute("semaforos", semaforoRepository.readAll());
 
         var id = Integer.valueOf(request.getParameter("id"));
         var plano = repository.read(id);

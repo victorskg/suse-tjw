@@ -28,6 +28,9 @@ public class Semaforo extends EntidadeBase<Integer> {
     @JoinColumn(name = "plano_semaforico_id", foreignKey = @ForeignKey(name = "fk_plano_semaforico"))
     private PlanoSemaforico planoSemaforico;
 
+    @Transient
+    private Integer idPlanoSemaforico;
+
     public Semaforo() {
     }
 
@@ -74,6 +77,14 @@ public class Semaforo extends EntidadeBase<Integer> {
 
     public void setPlanoSemaforico(PlanoSemaforico planoSemaforico) {
         this.planoSemaforico = planoSemaforico;
+    }
+
+    public Integer getIdPlanoSemaforico() {
+        return idPlanoSemaforico;
+    }
+
+    public void setIdPlanoSemaforico(Integer idPlanoSemaforico) {
+        this.idPlanoSemaforico = idPlanoSemaforico;
     }
 
     @Override
