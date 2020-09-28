@@ -272,17 +272,12 @@
         <form action="planos-semaforicos" method="post" autocomplete="off">
             <input type="hidden" id="id" class="fadeIn second"
                    name="id" value="${plano.id}" placeholder="id" autocomplete="off"/>
-            <input type="text" id="codigo" class="fadeIn second"
+            <input type="text" id="tempoVerde" class="fadeIn second"
                    name="tempoVerde" value="${plano.tempoVerde}" placeholder="Tempo Verde" autocomplete="off"/>
-            <input type="text" id="estado" class="fadeIn second"
+            <input type="text" id="tempoVermelho" class="fadeIn second"
                    name="tempoVermelho" value="${plano.tempoVermelho}" placeholder="Tempo Vermelho" autocomplete="off"/>
-            <input type="text" id="cidade" class="fadeIn second"
+            <input type="text" id="tempoAmarelo" class="fadeIn second"
                    name="tempoAmarelo" value="${plano.tempoAmarelo}" placeholder="Tempo Amarelo" autocomplete="off"/>
-            <c:forEach items="${semaforos}" var="semaforo">
-                <select name="semaforos" class="fadeIn second" value="${plano.semaforos}">
-                    <option value="${semaforo}">Semáforo - ${semaforo.id}</option>
-                </select>
-            </c:forEach>
             <input type="submit" class="fadeIn fourth" value="${not empty plano ? "Atualizar" : "Cadastrar"}"/>
         </form>
         <a href="planos-semaforicos" class="fadeIn fourth">Voltar</a>

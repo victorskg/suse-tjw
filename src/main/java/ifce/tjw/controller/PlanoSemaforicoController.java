@@ -22,7 +22,7 @@ public class PlanoSemaforicoController extends HttpServlet {
     private final PlanoSemaforicoRepository repository;
     private final SemaforoRepository semaforoRepository;
 
-    public PlanoSemaforicoController(){
+    public PlanoSemaforicoController() {
         super();
         this.forwardRoot = "views/PlanosSemaforicos/";
         this.repository = new PlanoSemaforicoRepository();
