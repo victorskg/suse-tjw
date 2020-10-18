@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="title">
+            SUSE | Planos Semafóricos
+        </ui:define>
+        <ui:define name="content">
+
+            <div style="display: flex;
+                        margin-top: 8px;
+                        flex-direction: row;
+                        align-items: center;
+                        box-sizing: border-box;
+                        place-content: center flex-end;"
+            >
+                <p:linkButton outcome="formulario" value="Novo" icon="pi pi-plus">
+                </p:linkButton>
+            </div>
+
+            <p:dataTable id="tabelaPlanosSemaforicos" var="planoSemaforico" value="#{planoSemaforicoBean.planosSemaforicos}"
+                         emptyMessage="Nenhum plano semafórico encontrado na base de dados.">
+
+                <p:column headerText="Id">
+                    <h:outputText value="#{planoSemaforico.id}" />
+                </p:column>
+
+                <p:column headerText="Tempo Vermelho">
+                    <h:outputText value="#{planoSemaforico.tempoVermelho}s" />
+                </p:column>
+
+                <p:column headerText="Tempo Amarelo">
+                    <h:outputText value="#{planoSemaforico.tempoAmarelo}s" />
+                </p:column>
+
+                <p:column headerText="Tempo Verde">
+                    <h:outputText value="#{planoSemaforico.tempoVerde}s" />
+                </p:column>
+
+                <p:column headerText="Criado em">
+                    <h:outputText value="#{planoSemaforico.dataCadastro}">
+                        <f:converter converterId="localDateTimeFacesConverter" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Ações" style="text-align: center">
+                    <p:commandButton icon="pi pi-pencil" title="Editar"
+                                     action="#{planoSemaforicoBean.goUpdate(planoSemaforico)}" update="tabelaPlanosSemaforicos">
+                    </p:commandButton>
+                    <p:commandButton icon="pi pi-trash" title="Excluir"
+                                     action="#{planoSemaforicoBean.delete(planoSemaforico)}" update="tabelaPlanosSemaforicos">
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
+

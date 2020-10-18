@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="title">
+            SUSE | Semáforos
+        </ui:define>
+        <ui:define name="content">
+
+            <div style="display: flex;
+                        margin-top: 8px;
+                        flex-direction: row;
+                        align-items: center;
+                        box-sizing: border-box;
+                        place-content: center flex-end;"
+            >
+                <p:commandButton value="Novo" icon="pi pi-plus"
+                                 action="#{semaforoBean.goAdd}" update="tabelaSemaforos">
+                </p:commandButton>
+            </div>
+
+            <p:dataTable id="tabelaSemaforos" var="semaforo" value="#{semaforoBean.semaforos}"
+                         emptyMessage="Nenhum semáforo encontrado na base de dados.">
+
+                <p:column headerText="Id">
+                    <h:outputText value="#{semaforo.id}"/>
+                </p:column>
+
+                <p:column headerText="Código">
+                    <h:outputText value="#{semaforo.codigo}"/>
+                </p:column>
+
+                <p:column headerText="Localização">
+                    <h:outputText value="#{semaforo.endereco.cidade} - #{semaforo.endereco.estado}"/>
+                </p:column>
+
+                <p:column headerText="Endereço">
+                    <h:outputText value="#{semaforo.endereco.logradouro}, #{semaforo.endereco.bairro}"/>
+                </p:column>
+
+                <p:column headerText="Criado em">
+                    <h:outputText value="#{semaforo.dataCadastro}">
+                        <f:converter converterId="localDateTimeFacesConverter" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Ações" style="text-align: center">
+                    <p:commandButton icon="pi pi-pencil" title="Editar"
+                                     action="#{semaforoBean.goUpdate(semaforo)}" update="tabelaSemaforos">
+                    </p:commandButton>
+                    <p:commandButton icon="pi pi-trash" title="Excluir"
+                                     action="#{semaforoBean.delete(semaforo)}" update="tabelaSemaforos">
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

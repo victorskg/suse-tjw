@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="title">
+            SUSE | #{empty semaforoBean.semaforo.id ? 'Novo Semáforo' : 'Atualizar Semáforo'}
+        </ui:define>
+        <ui:define name="content">
+            <div style="display: flex;
+                        margin-top: 8px;
+                        flex-direction: row;
+                        align-items: center;
+                        box-sizing: border-box;
+                        place-content: center center;"
+            >
+                <h:form>
+                    <h3>#{empty semaforoBean.semaforo.id ? 'Novo Semáforo' : 'Atualizar Semáforo'}</h3>
+                    <div class="ui-fluid">
+                        <div class="p-field" style="display: none">
+                            <p:outputLabel for="id" value="Id"/>
+                            <p:inputText id="id" value="#{semaforoBean.semaforo.id}" />
+                        </div>
+
+                        <div class="p-field">
+                            <p:outputLabel for="codigocodigo" value="Código"/>
+                            <p:inputText id="codigocodigo" value="#{semaforoBean.semaforo.codigo}" />
+                        </div>
+
+                        <div class="p-field">
+                            <p:outputLabel for="estado" value="Estado"/>
+                            <p:inputText id="estado" value="#{semaforoBean.semaforo.endereco.estado}" />
+                        </div>
+
+                        <div class="p-field">
+                            <p:outputLabel for="cidade" value="Cidade"/>
+                            <p:inputText id="cidade" value="#{semaforoBean.semaforo.endereco.cidade}" />
+                        </div>
+
+                        <div class="p-field">
+                            <p:outputLabel for="bairro" value="Bairro"/>
+                            <p:inputText id="bairro" value="#{semaforoBean.semaforo.endereco.bairro}" />
+                        </div>
+
+                        <div class="p-field">
+                            <p:outputLabel for="logradouro" value="Logradouro"/>
+                            <p:inputText id="logradouro" value="#{semaforoBean.semaforo.endereco.logradouro}" />
+                        </div>
+
+                        <div class="p-field">
+                            <p:outputLabel for="planoSemaforico" value="Plano Semafórico"/>
+                            <p:selectOneMenu id="planoSemaforico" value="#{semaforoBean.idPlano}">
+                                <f:selectItem itemLabel="Selecione um plano" itemValue="#{null}" />
+                                <f:selectItems var="plano" value="#{semaforoBean.planosSemaforicos}"
+                                               itemLabel="Plano #{plano.id}" itemValue="#{plano.id}" />
+                            </p:selectOneMenu>
+                        </div>
+
+                        <div style="margin-top: 8px">
+                            <p:commandButton value="#{empty semaforoBean.semaforo.id ? 'Salvar' : 'Atualizar'}"
+                                             type="submit" action="#{semaforoBean.saveOrUpdate}" />
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+    <ui:composition template="../template/template.xhtml">
+        <ui:define name="title">
+            SUSE | #{empty planoSemaforicoBean.planoSemaforico.id ? 'Novo Plano Semafórico' : 'Atualizar Plano Semafórico'}
+        </ui:define>
+        <ui:define name="content">
+            <div style="display: flex;
+                        margin-top: 8px;
+                        flex-direction: row;
+                        align-items: center;
+                        box-sizing: border-box;
+                        place-content: center center;"
+            >
+                <h:form>
+                    <h3>#{empty planoSemaforicoBean.planoSemaforico.id ? 'Novo Plano Semafórico' : 'Atualizar Plano Semafórico'}</h3>
+                    <div class="ui-fluid">
+
+                        <div class="p-field" style="display: none">
+                            <p:outputLabel for="id" value="Id"/>
+                            <p:inputText id="id" value="#{planoSemaforicoBean.planoSemaforico.id}" />
+                        </div>
+
+                        <div class="p-field">
+                            <p:outputLabel for="tempoVermelho" value="Tempo Vermelho"/>
+                            <p:inputText id="tempoVermelho" value="#{planoSemaforicoBean.planoSemaforico.tempoVermelho}" />
+                        </div>
+
+                        <div class="p-field">
+                            <p:outputLabel for="tempoAmarelo" value="Tempo Amarelo"/>
+                            <p:inputText id="tempoAmarelo" value="#{planoSemaforicoBean.planoSemaforico.tempoAmarelo}" />
+                        </div>
+
+                        <div class="p-field">
+                            <p:outputLabel for="tempoVerde" value="Tempo Verde"/>
+                            <p:inputText id="tempoVerde" value="#{planoSemaforicoBean.planoSemaforico.tempoVerde}" />
+                        </div>
+
+                        <div style="margin-top: 8px">
+                            <p:commandButton value="#{empty planoSemaforicoBean.planoSemaforico.id ? 'Salvar' : 'Atualizar'}"
+                                             type="submit" action="#{planoSemaforicoBean.saveOrUpdate}"  />
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
