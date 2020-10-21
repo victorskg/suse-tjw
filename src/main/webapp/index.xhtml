@@ -3,7 +3,9 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
 </h:head>
 <h:body>
@@ -11,7 +13,27 @@
         <ui:define name="title">
             SUSE | Painel
         </ui:define>
-        <ui:define name="content"/>
+        <ui:define name="content">
+            <p:dataGrid var="semaforo" value="#{painelBean.semaforos}" columns="3" layout="grid" style="margin-top: 8px;"
+                        emptyMessage="Cadastre um semáforo e associe a um plano semafórico para visualizar seu funcionamento.">
+                <f:facet name="header">
+                    Semáforos Ativos
+                </f:facet>
+
+                <p:panel header="Código: #{semaforo.codigo}" style="text-align:center">
+                    <h:panelGrid columns="2" style="width:100%">
+                        <h:outputText value="Tempo de Vermelho"/>
+                        <h:outputText value="#{semaforo.planoSemaforico.tempoVermelho}s"/>
+
+                        <h:outputText value="Tempo de Amarelo"/>
+                        <h:outputText value="#{semaforo.planoSemaforico.tempoAmarelo}s"/>
+
+                        <h:outputText value="Tempo de Verde"/>
+                        <h:outputText value="#{semaforo.planoSemaforico.tempoVerde}s"/>
+                    </h:panelGrid>
+                </p:panel>
+            </p:dataGrid>
+        </ui:define>
     </ui:composition>
 </h:body>
 </html>
