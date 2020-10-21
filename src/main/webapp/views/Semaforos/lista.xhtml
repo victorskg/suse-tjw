@@ -47,6 +47,11 @@
                     </h:outputText>
                 </p:column>
 
+                <p:column headerText="Plano">
+                    <h:outputText value="#{empty semaforo.planoSemaforico ? 'Plano não associado'
+                    : 'Plano '}#{semaforo.planoSemaforico.id}"/>
+                </p:column>
+
                 <p:column headerText="Ações" style="text-align: center">
                     <p:commandButton icon="pi pi-pencil" title="Editar"
                                      action="#{semaforoBean.goUpdate(semaforo)}" update="tabelaSemaforos"/>

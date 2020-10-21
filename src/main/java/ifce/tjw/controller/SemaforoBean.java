@@ -57,6 +57,7 @@ public class SemaforoBean implements Serializable {
     }
 
     public void update() {
+        semaforo.setPlanoSemaforico(isNull(idPlano) ? null : planoSemaforicoDao.read(idPlano));
         semaforoDao.update(semaforo);
         semaforos = semaforoDao.readAll();
     }

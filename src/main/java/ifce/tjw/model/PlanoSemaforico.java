@@ -38,7 +38,6 @@ public class PlanoSemaforico extends EntidadeBase<Integer> {
     public PlanoSemaforico() {
     }
 
-
     public void adicionarSemaforo(Semaforo semaforo) {
         semaforos.add(semaforo);
         semaforo.setPlanoSemaforico(this);
