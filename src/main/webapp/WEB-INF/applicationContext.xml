@@ -1,0 +1,25 @@
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://www.springframework.org/schema/security"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+             http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+             http://www.springframework.org/schema/security
+             http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+
+    <http auto-config="true" use-expressions="true">
+        <remember-me/>
+        <csrf disabled="true"/>
+
+        <intercept-url pattern="/login.html" access="permitAll"/>
+        <intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
+        <!--<access-denied-handler error-page="/WEB-INF/error.jsf"/>
+        <form-login login-page="/login.html"/>-->
+    </http>
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="user" password="123456" authorities="ROLE_USER"/>
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+</beans:beans>
