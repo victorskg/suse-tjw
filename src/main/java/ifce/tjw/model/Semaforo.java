@@ -95,8 +95,8 @@ public class Semaforo extends EntidadeBase<Integer> {
         if (!super.equals(o)) return false;
         Semaforo semaforo = (Semaforo) o;
         return Objects.equals(codigo, semaforo.codigo) &&
-                Objects.equals(endereco, semaforo.endereco) &&
-                Objects.equals(dataCadastro, semaforo.dataCadastro);
+               Objects.equals(endereco, semaforo.endereco) &&
+               Objects.equals(dataCadastro, semaforo.dataCadastro);
     }
 
     @Override

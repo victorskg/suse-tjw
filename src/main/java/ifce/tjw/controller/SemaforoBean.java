@@ -5,37 +5,38 @@ import ifce.tjw.dao.SemaforoDao;
 import ifce.tjw.model.PlanoSemaforico;
 import ifce.tjw.model.Semaforo;
 
-import javax.faces.bean.ManagedBean;
 import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
-@ViewScoped
-@ManagedBean
+@Named
+@RequestScoped
 public class SemaforoBean implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     private Integer idPlano;
+
+    @Inject
     private Semaforo semaforo;
+
+    @Inject
     private SemaforoDao semaforoDao;
+
     private List<Semaforo> semaforos;
+
+    @Inject
     private PlanoSemaforicoDao planoSemaforicoDao;
     private List<PlanoSemaforico> planosSemaforicos;
 
-    public SemaforoBean() {
-    }
-
     @PostConstruct
     public void init() {
-        this.semaforo = new Semaforo();
-        this.semaforoDao = new SemaforoDao();
         this.semaforos = semaforoDao.readAll();
-        this.planoSemaforicoDao = new PlanoSemaforicoDao();
+        this.planosSemaforicos = planoSemaforicoDao.readAll();
     }
 
     public String saveOrUpdate() {
@@ -66,9 +67,6 @@ public class SemaforoBean implements Serializable {
     }
 
     public String goAdd() {
-        this.semaforo = new Semaforo();
-        this.idPlano = null;
-        this.planosSemaforicos = planoSemaforicoDao.readAll();
         return "formulario.xhtml";
     }
 
@@ -83,28 +81,28 @@ public class SemaforoBean implements Serializable {
         return idPlano;
     }
 
-    public Semaforo getSemaforo() {
-        return semaforo;
-    }
-
-    public List<Semaforo> getSemaforos() {
-        return semaforos;
-    }
-
-    public List<PlanoSemaforico> getPlanosSemaforicos() {
-        return planosSemaforicos;
-    }
-
     public void setIdPlano(Integer idPlano) {
         this.idPlano = idPlano;
+    }
+
+    public Semaforo getSemaforo() {
+        return semaforo;
     }
 
     public void setSemaforo(Semaforo semaforo) {
         this.semaforo = semaforo;
     }
 
+    public List<Semaforo> getSemaforos() {
+        return semaforos;
+    }
+
     public void setSemaforos(List<Semaforo> semaforos) {
         this.semaforos = semaforos;
+    }
+
+    public List<PlanoSemaforico> getPlanosSemaforicos() {
+        return planosSemaforicos;
     }
 
     public void setPlanosSemaforicos(List<PlanoSemaforico> planosSemaforicos) {

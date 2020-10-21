@@ -23,17 +23,19 @@
 <h:body>
     <h:form>
         <p:menubar>
-            <p:menuitem value="Painel" url="/suse_tjw_war" style="" />
-            <p:menuitem value="Semáforos" url="/suse_tjw_war/views/Semaforos/lista.xhtml"/>
-            <p:menuitem value="Planos Semafóricos" url="/suse_tjw_war/views/PlanosSemaforicos/lista.xhtml"/>
+            <p:menuitem value="Painel" url="/tjw" style=""/>
+            <p:menuitem value="Semáforos" url="/tjw/views/Semaforos/lista.xhtml"/>
+            <p:menuitem value="Planos Semafóricos" url="/tjw/views/PlanosSemaforicos/lista.xhtml"/>
 
             <f:facet name="options">
                 <p:commandButton type="button" value="Logout" icon="pi pi-home"/>
             </f:facet>
         </p:menubar>
     </h:form>
-    <ui:insert name="content">
+    <div style="width: 75%; margin: auto;">
+        <ui:insert name="content">
 
-    </ui:insert>
+        </ui:insert>
+    </div>
 </h:body>
 </html>

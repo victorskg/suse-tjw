@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 import java.util.StringJoiner;
 
+import static java.util.Objects.*;
+
 @Embeddable
 public class Endereco {
 
@@ -26,13 +28,6 @@ public class Endereco {
     private String logradouro;
 
     public Endereco() {
-    }
-
-    public Endereco(String estado, String cidade, String bairro, String logradouro) {
-        this.estado = estado;
-        this.cidade = cidade;
-        this.bairro = bairro;
-        this.logradouro = logradouro;
     }
 
     public String getEstado() {
@@ -73,19 +68,19 @@ public class Endereco {
         if (o == null || getClass() != o.getClass()) return false;
         Endereco endereco = (Endereco) o;
         return Objects.equals(estado, endereco.estado) &&
-                Objects.equals(cidade, endereco.cidade) &&
-                Objects.equals(bairro, endereco.bairro) &&
-                Objects.equals(logradouro, endereco.logradouro);
+               Objects.equals(cidade, endereco.cidade) &&
+               Objects.equals(bairro, endereco.bairro) &&
+               Objects.equals(logradouro, endereco.logradouro);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(estado, cidade, bairro, logradouro);
+        return hash(estado, cidade, bairro, logradouro);
     }
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", Endereco.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", "{", "}")
                 .add("estado='" + estado + "'")
                 .add("cidade='" + cidade + "'")
                 .add("bairro='" + bairro + "'")

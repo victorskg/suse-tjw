@@ -6,12 +6,11 @@ import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Objects;
 
+import static java.util.Objects.*;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @MappedSuperclass
 public class EntidadeBase<T extends Number> implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -35,7 +34,6 @@ public class EntidadeBase<T extends Number> implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return hash(id);
     }
-
 }

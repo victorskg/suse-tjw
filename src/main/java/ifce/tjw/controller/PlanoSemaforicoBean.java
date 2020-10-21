@@ -4,30 +4,27 @@ import ifce.tjw.dao.PlanoSemaforicoDao;
 import ifce.tjw.model.PlanoSemaforico;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
 import static java.util.Objects.isNull;
 
-@ViewScoped
-@ManagedBean
+@Named
+@RequestScoped
 public class PlanoSemaforicoBean implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
+    @Inject
     private PlanoSemaforico planoSemaforico;
+
+    @Inject
     private PlanoSemaforicoDao planoSemaforicoDao;
     private List<PlanoSemaforico> planosSemaforicos;
 
-    public PlanoSemaforicoBean() {
-    }
-
     @PostConstruct
     public void init() {
-        this.planoSemaforico = new PlanoSemaforico();
-        this.planoSemaforicoDao = new PlanoSemaforicoDao();
         this.planosSemaforicos = planoSemaforicoDao.readAll();
     }
 
@@ -41,6 +38,10 @@ public class PlanoSemaforicoBean implements Serializable {
         return "lista.xhtml?faces-redirect=true";
     }
 
+    public String goAdd() {
+        return "formulario.xhtml";
+    }
+
     public void save() {
         planosSemaforicos.add(planoSemaforicoDao.create(planoSemaforico));
         planoSemaforico = new PlanoSemaforico();
@@ -48,7 +49,6 @@ public class PlanoSemaforicoBean implements Serializable {
 
     public void update() {
         planoSemaforicoDao.update(planoSemaforico);
-        planoSemaforico = new PlanoSemaforico();
         planosSemaforicos = planoSemaforicoDao.readAll();
     }
 
@@ -69,5 +69,4 @@ public class PlanoSemaforicoBean implements Serializable {
     public List<PlanoSemaforico> getPlanosSemaforicos() {
         return planosSemaforicos;
     }
-
 }

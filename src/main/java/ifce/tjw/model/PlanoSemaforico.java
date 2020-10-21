@@ -1,6 +1,9 @@
 package ifce.tjw.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,6 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static java.time.LocalDateTime.now;
+import static java.util.Objects.*;
 
 @Entity
 @Table(name = "plano_semaforico")
@@ -25,29 +29,15 @@ public class PlanoSemaforico extends EntidadeBase<Integer> {
     @NotNull(message = "O tempo de estado amarelo é obrigatório.")
     private Integer tempoAmarelo;
 
-    @OneToMany(mappedBy = "planoSemaforico")
-    private List<Semaforo> semaforos = new ArrayList<>();
-
     @Column
     private LocalDateTime dataCadastro = now();
+
+    @OneToMany(mappedBy = "planoSemaforico")
+    private List<Semaforo> semaforos = new ArrayList<>();
 
     public PlanoSemaforico() {
     }
 
-    public PlanoSemaforico(Integer tempoVerde, Integer tempoVermelho, Integer tempoAmarelo) {
-        this.tempoVerde = tempoVerde;
-        this.tempoVermelho = tempoVermelho;
-        this.tempoAmarelo = tempoAmarelo;
-        this.dataCadastro = now();
-    }
-
-    public PlanoSemaforico(Integer tempoVerde, Integer tempoVermelho, Integer tempoAmarelo, List<Semaforo> semaforos) {
-        this.tempoVerde = tempoVerde;
-        this.tempoVermelho = tempoVermelho;
-        this.tempoAmarelo = tempoAmarelo;
-        this.semaforos = semaforos;
-        this.dataCadastro = now();
-    }
 
     public void adicionarSemaforo(Semaforo semaforo) {
         semaforos.add(semaforo);
@@ -106,24 +96,23 @@ public class PlanoSemaforico extends EntidadeBase<Integer> {
         if (!super.equals(o)) return false;
         PlanoSemaforico that = (PlanoSemaforico) o;
         return Objects.equals(tempoVerde, that.tempoVerde) &&
-                Objects.equals(tempoVermelho, that.tempoVermelho) &&
-                Objects.equals(tempoAmarelo, that.tempoAmarelo) &&
-                Objects.equals(dataCadastro, that.dataCadastro);
+               Objects.equals(tempoVermelho, that.tempoVermelho) &&
+               Objects.equals(tempoAmarelo, that.tempoAmarelo) &&
+               Objects.equals(dataCadastro, that.dataCadastro);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), tempoVerde, tempoVermelho, tempoAmarelo, dataCadastro);
+        return hash(super.hashCode(), tempoVerde, tempoVermelho, tempoAmarelo, dataCadastro);
     }
 
     @Override
     public String toString() {
         return "PlanoSemaforico{" +
-                "tempoVerde=" + tempoVerde +
-                ", tempoVermelho=" + tempoVermelho +
-                ", tempoAmarelo=" + tempoAmarelo +
-                ", dataCadastro=" + dataCadastro +
-                '}';
+               "tempoVerde=" + tempoVerde +
+               ", tempoVermelho=" + tempoVermelho +
+               ", tempoAmarelo=" + tempoAmarelo +
+               ", dataCadastro=" + dataCadastro +
+               '}';
     }
-
 }

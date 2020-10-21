@@ -1,63 +1,48 @@
 package ifce.tjw.dao;
 
 import ifce.tjw.model.EntidadeBase;
-import ifce.tjw.producer.EntityManagerProducer;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
-
-import static java.lang.String.format;
 
 public abstract class AbstractDao<T extends EntidadeBase<I>, I extends Number> {
 
-    private final Class<T> daoClass;
-    private final EntityManager entityManager;
+    private static final String INSTANCE = " e";
+    private static final String SELECT_ALL = "SELECT e FROM ";
 
-    public AbstractDao(Class<T> daoClass) {
-        this.daoClass = daoClass;
-        this.entityManager = EntityManagerProducer.getEntityManager();
+    private Class<T> entityClass() {
+        ParameterizedType parameterizedType = (ParameterizedType) this.getClass().getGenericSuperclass();
+        return (Class<T>) parameterizedType.getActualTypeArguments()[0];
     }
 
+    protected abstract EntityManager entityManager();
+
+    @Transactional
     public T create(T entity) {
-        var transaction = entityManager.getTransaction();
-
-        transaction.begin();
-        entityManager.persist(entity);
-        transaction.commit();
-
+        entityManager().persist(entity);
         return entity;
     }
 
     public T read(I id) {
-        return entityManager.find(daoClass, id);
+        return entityManager().find(entityClass(), id);
     }
 
     public List<T> readAll() {
-        var jpql = format("SELECT e FROM %s e", daoClass.getSimpleName());
-        var query = entityManager.createQuery(jpql, daoClass);
-
-        return query.getResultList();
+        return entityManager()
+                .createQuery(SELECT_ALL + entityClass().getSimpleName() + INSTANCE)
+                .getResultList();
     }
 
-    public T update(T entity) {
-        var entityTransaction = entityManager.getTransaction();
-
-        entityTransaction.begin();
-        entityManager.merge(entity);
-        entityTransaction.commit();
-
-        return entity;
+    @Transactional
+    public void update(T entity) {
+        entityManager().merge(entity);
     }
 
+    @Transactional
     public void delete(I id) {
-        var entityTransaction = entityManager.getTransaction();
-
-        entityTransaction.begin();
-
         var entity = read(id);
-        entityManager.remove(entity);
-
-        entityTransaction.commit();
+        entityManager().remove(entity);
     }
-
 }
