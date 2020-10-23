@@ -12,8 +12,6 @@
 
         <intercept-url pattern="/login.html" access="permitAll"/>
         <intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
-        <!--<access-denied-handler error-page="/WEB-INF/error.jsf"/>
-        <form-login login-page="/login.html"/>-->
     </http>
     <authentication-manager>
         <authentication-provider>
